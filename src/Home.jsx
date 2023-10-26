@@ -17,10 +17,21 @@ function Home() {
   };
 
   const sharetoWhatsapp = () => {
-    // Create a message with attendance details
-    var message = "Absent Students\n";
+    // Get the current date and time
+    const currentDate = new Date();
+
+    // Format the date and time in "dd/mm/yy" format
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Month is zero-based, so we add 1
+    const year = String(currentDate.getFullYear()).slice(2);
+
+    const formattedDateTime = `${day}/${month}/${year} ${currentDate.toLocaleTimeString()}`;
+
+    // Create a message with attendance details, including the formatted date and time
+    let message = `${formattedDateTime}\nAbsent Students\n\n`;
+
     for (const student of absent) {
-      message += `${student}  `; // Use student twice to display the student number and student name
+      message += `${student}  `;
     }
 
     // Encode the message for a URL
@@ -39,11 +50,11 @@ function Home() {
     return Array.from({ length: count }, (_, index) => (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
+        width="42"
+        height="42"
         className="bi bi-square"
         viewBox="0 0 16 16"
-        style={{ padding: "5px" }}
+        style={{ padding: "10px" }}
         key={index}
         onClick={() => handleSvgClick(index + 1)}
       >
@@ -52,7 +63,7 @@ function Home() {
           y="1"
           width="14"
           height="14"
-          fill="none"
+          fill="#f0fcf3"
           stroke={isAbsent(index + 1) ? "red" : "green"}
           strokeWidth="1"
           rx="1"
@@ -73,8 +84,8 @@ function Home() {
 
   return (
     <div>
-      <h1>Take attendance...</h1>
-      <p>Enter the total number of students</p>
+      <h1 style={{ color: "#610C9F" }}>ATTENDANCE</h1>
+      <h2 style={{ color: "#940B92" }}>Enter the total number of students</h2>
       <input
         type="number"
         onChange={(e) => {
@@ -84,12 +95,16 @@ function Home() {
         }}
       />
       <br />
+      <br />
       {generateArray(students)}
-      <p>Absent Students: {absent.sort((a, b) => a - b).join(", ")}</p>
+      <h3 style={{ color: "#9A4444" }}>
+        Absent Students: {absent.sort((a, b) => a - b).join(", ")}
+      </h3>
+
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
+        width="36"
+        height="36"
         fill="currentColor"
         class="bi bi-whatsapp"
         viewBox="0 0 16 16"
