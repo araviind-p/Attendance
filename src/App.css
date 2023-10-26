@@ -1,3 +1,26 @@
+body{
+  margin: 10px 100px 10px 100px;
+  background-color: #ffeff6;
+}
+
+input[type="number"] {
+  width: 200px;
+  padding: 10px;
+  border: 2px solid #E95793;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input[type="number"]:focus {
+  width: 200px;
+  border-color: #dc508b; /* Change the border color */
+  box-shadow: 0 0 2px #d63779; /* Add a shadow when focused */
+  background-color: #F0F0F0; /* Change the background color */
+  color: #333; /* Change the text color */
+  font-weight: bold; /* Modify the font weight */
+  outline: none; /* Remove the default outline (blue border) */
+}
+
 .App {
   text-align: center;
 }
